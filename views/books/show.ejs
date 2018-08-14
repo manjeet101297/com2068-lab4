@@ -1,0 +1,43 @@
+<% include ../partials/header %>
+<div style="background:#e9ecef;">
+  <b>Navigation</b> - &nbsp; <a href="http://localhost:3000" style="text-decoration: none;">Home</a> /
+  <a href="../../books" style="text-decoration: none;">Books</a> /
+  <button type="submit" class="btn btn-warning">Show</button>
+  <a href="/books/new">
+  <button type="submit" class="btn btn-success" style="position:relative;left:64%;">New Book</button>
+  </a>
+</div><br/>
+<section>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">
+              Book: <%= book.name %>
+            </h5>
+            <p>
+              Author: <%= book.author %>
+            </p>
+             <p>
+              Year: <%= book.year %>
+            </p>
+
+            <p>
+              Price: $<%= book.price %>
+            </p>
+
+            <div class="actions">
+              <a href="/books/<%= book.id %>/edit" class="btn btn-primary">
+                Edit
+              </a>
+              <form action="/books/<%= book.id %>/delete" method="post"  onsubmit="return confirm('Are you sure you want to delete this book?');">
+                <input type="hidden" name="id" value="<%= book.id %>">
+                <button type="submit" class="btn btn-danger">DELETE</button>
+              </form>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+<% include ../partials/footer %>

@@ -1,0 +1,44 @@
+ <% include ../partials/header %>
+ <section>
+   <div style="background:#e9ecef;">
+     <b>Navigation</b> - &nbsp; <a href="http://localhost:3000" style="text-decoration: none;">Home</a> / <button type="submit" class="btn btn-warning">Books</button>
+     <a href="/books/new">
+     <button type="submit" class="btn btn-success" style="position:relative;left:69%;">New Book</button>
+     </a>
+   </div><br/>
+   <div class="row">
+          <% for ( let book of books ) { %>
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Name: <%= book.name %>
+                  </h5>
+                  <p>
+                   Author: <%= book.author %>
+                  </p>
+                  <p>
+                   Year: <%= book.year %>
+                  </p>
+                  <a href="#" class="btn btn-primary">
+                    Price: $<%= book.price %>
+                  </a>
+                  <div class="actions">
+                    <a href="/books/<%= book.id %>" class="btn btn-primary">
+                      Show
+                    </a>
+                    <a href="/books/<%= book.id %>/edit" class="btn btn-primary">
+                      Edit
+                    </a>
+                    <form action="/books/<%= book.id %>/delete" method="post"  onsubmit="return confirm('Are you sure you want to delete this book?');">
+                      <input type="hidden" name="id" value="<%= book.id %>">
+                      <button type="submit" class="btn btn-danger">DELETE</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% } %>
+            </div>
+      </section>
+ <% include ../partials/footer %>
